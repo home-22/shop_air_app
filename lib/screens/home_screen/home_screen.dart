@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shop_air_app/screens/home_screen/components/range_card.dart';
+import 'package:shop_air_app/screens/items_screen/items_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -43,23 +45,82 @@ class _HomeScreenState extends State<HomeScreen> {
         physics: const BouncingScrollPhysics(),
         slivers: [
           SliverList(
-            delegate: SliverChildListDelegate(
-                [Text('Price Range'), Text('Tags'), Text('Style')]),
+            delegate: SliverChildListDelegate([
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RangeCard(title: 'Price Range'),
+                    RangeCard(title: 'Tags'),
+                    RangeCard(title: 'Style'),
+                    RangeCard(title: 'Color'),
+                  ],
+                ),
+              )
+            ]),
           ),
           SliverPadding(
-            padding: const EdgeInsets.all(1),
+            padding: const EdgeInsets.all(2.0),
             sliver: SliverGrid(
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 300.0,
-                mainAxisSpacing: 15.0,
+                mainAxisSpacing: 10.0,
                 crossAxisSpacing: 5.0,
                 childAspectRatio: 1.0,
               ),
               delegate: SliverChildListDelegate(
                 [
                   for (int i = 0; i < 4; i++)
-                    Card(
-                      child: Text('Red'),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ItemsScreen(),
+                          ),
+                        );
+                      },
+                      child: Card(
+                          child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Icon(Icons.add),
+                              Icon(
+                                Icons.favorite_border,
+                                color: Colors.red,
+                              )
+                            ],
+                          ),
+                          Stack(
+                            children: [
+                              Image.asset(
+                                'assets/images/002.png',
+                                fit: BoxFit.cover,
+                                height: 120,
+                              ),
+                              const Positioned(
+                                bottom: 20,
+                                left: 0,
+                                child: Text('Chars'),
+                              ),
+                              const Positioned(
+                                bottom: 0,
+                                left: 20,
+                                child: Text(
+                                  ' \$ 143._',
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )),
                     )
                 ],
               ),
@@ -67,6 +128,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: ElevatedButton(
+          onPressed: () {},
+          child: const Text(
+            'Scan my Space',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          )),
     );
   }
 }
