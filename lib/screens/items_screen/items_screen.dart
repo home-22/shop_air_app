@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_air_app/screens/items_screen/components/colors_items.dart';
 import 'package:shop_air_app/screens/items_screen/components/quantity.dart';
@@ -9,11 +8,17 @@ class ItemsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: SingleChildScrollView(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.arrow_back_ios),
+              ),
               Image.asset('assets/images/001.png'),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -53,6 +58,8 @@ class ItemsScreen extends StatelessWidget {
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

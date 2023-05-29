@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     RangeCard(title: 'Price Range'),
                     RangeCard(title: 'Tags'),
                     RangeCard(title: 'Style'),
@@ -82,46 +82,58 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       },
                       child: Card(
+                        child: SingleChildScrollView(
                           child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Icon(Icons.add),
-                              Icon(
-                                Icons.favorite_border,
-                                color: Colors.red,
-                              )
-                            ],
-                          ),
-                          Stack(
                             children: [
-                              Image.asset(
-                                'assets/images/002.png',
-                                fit: BoxFit.cover,
-                                height: 120,
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const CircleAvatar(
+                                    radius: 12,
+                                    child: Icon(
+                                      Icons.add,
+                                      size: 25,
+                                    ),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        Icons.favorite_border,
+                                        color: Colors.red,
+                                      ))
+                                ],
                               ),
-                              const Positioned(
-                                bottom: 20,
-                                left: 0,
-                                child: Text('Chars'),
-                              ),
-                              const Positioned(
-                                bottom: 0,
-                                left: 20,
-                                child: Text(
-                                  ' \$ 143._',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
+                              Stack(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/003.png',
+                                    fit: BoxFit.cover,
+                                    height: 160,
+                                  ),
+                                  const Positioned(
+                                    bottom: 20,
+                                    left: 0,
+                                    child: Text('Chars'),
+                                  ),
+                                  const Positioned(
+                                    bottom: 0,
+                                    left: 20,
+                                    child: Text(
+                                      ' \$ 143._',
+                                      style: TextStyle(
+                                          color: Colors.blue,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
-                      )),
-                    )
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),

@@ -11,14 +11,14 @@ class RangeCard extends StatelessWidget {
       child: Container(
         height: 30,
         width: 110,
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(spreadRadius: 0.1, blurRadius: 1.5, color: Colors.black87),
-        ], borderRadius: BorderRadius.circular(5.0), color: Colors.white70),
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+            border: Border.all(color: Colors.grey)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Icon(Icons.align_vertical_bottom_outlined),
-            SizedBox(width: 10),
+            const Icon(Icons.calendar_view_day),
+            const SizedBox(width: 10),
             Text(
               title,
               textAlign: TextAlign.center,
