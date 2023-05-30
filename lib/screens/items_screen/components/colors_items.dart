@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_air_app/colors/app_colors.dart';
 
 class ColorsItems extends StatelessWidget {
   const ColorsItems({super.key});
@@ -14,25 +15,25 @@ class ColorsItems extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              children: const [
+              children: [
                 CircleAvatar(
                   radius: 10,
-                  backgroundColor: Colors.amber,
+                  backgroundColor: AppColors.kAmber,
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 CircleAvatar(
                   radius: 10,
-                  backgroundColor: Colors.red,
+                  backgroundColor: AppColors.kRed,
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 CircleAvatar(
                   radius: 10,
-                  backgroundColor: Colors.blue,
+                  backgroundColor: AppColors.kBlue,
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 CircleAvatar(
                   radius: 10,
-                  backgroundColor: Colors.black,
+                  backgroundColor: AppColors.kBlack,
                 ),
               ],
             ),

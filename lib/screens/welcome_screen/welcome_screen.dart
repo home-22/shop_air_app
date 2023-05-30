@@ -8,6 +8,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.kWhite,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -20,7 +21,7 @@ class WelcomeScreen extends StatelessWidget {
             ),
             Center(
               child: ElevatedButton(
-                  style: TextButton.styleFrom(backgroundColor: AppColors.bluee),
+                  style: TextButton.styleFrom(backgroundColor: AppColors.kBlue),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -31,20 +32,20 @@ class WelcomeScreen extends StatelessWidget {
                   },
                   child: const Text('Get started')),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 0, vertical: 50),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 50),
               child: Text.rich(
                 TextSpan(
                   children: [
                     TextSpan(
                       text: 'Already have an account?',
                       style: TextStyle(
-                        color: Colors.grey,
+                        color: AppColors.kGrey,
                         fontFamily: 'Helvetica-Bold',
                         fontSize: 16,
                       ),
                     ),
-                    TextSpan(
+                    const TextSpan(
                       text: 'Sing in ',
                       style: TextStyle(
                         color: Colors.black,

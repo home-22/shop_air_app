@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/screens/items_screen/components/colors_items.dart';
 import 'package:shop_air_app/screens/items_screen/components/quantity.dart';
 
@@ -8,6 +9,7 @@ class ItemsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.kWhite,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -31,30 +33,34 @@ class ItemsScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                 child: Text('Night Stands'),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0, vertical: 10.0),
                 child: Text(
                   '\$ 140. _',
                   style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue),
+                      color: AppColors.kBlue),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.grey,
+                    color: AppColors.kGrey,
                   ),
                   textAlign: TextAlign.start,
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [Quantity(), ColorsItems()],
+                children: const [
+                  Quantity(),
+                  ColorsItems(),
+                ],
               ),
             ],
           ),

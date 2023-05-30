@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/screens/home_screen/components/range_card.dart';
 import 'package:shop_air_app/screens/items_screen/items_screen.dart';
 
@@ -13,30 +14,31 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.kWhite,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.kWhite,
         elevation: 0,
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(
+          icon: Icon(
             Icons.menu_outlined,
-            color: Colors.black,
+            color: AppColors.kBlack,
           ),
         ),
         title: Row(
 //          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Padding(
-              padding: EdgeInsets.only(left: 40),
+              padding: const EdgeInsets.only(left: 40),
               child: Text(
                 'Categories',
-                style: TextStyle(fontFamily: 'Helvetica', color: Colors.black),
+                style:
+                    TextStyle(fontFamily: 'Helvetica', color: AppColors.kBlack),
               ),
             ),
             Icon(
               Icons.arrow_drop_down,
-              color: Colors.black,
+              color: AppColors.kBlack,
             ),
           ],
         ),
@@ -81,55 +83,59 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         );
                       },
-                      child: Card(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const CircleAvatar(
-                                    radius: 12,
-                                    child: Icon(
-                                      Icons.add,
-                                      size: 25,
+                      child: Scaffold(
+                        backgroundColor: AppColors.kWhite,
+                        body: Card(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const CircleAvatar(
+                                      radius: 12,
+                                      child: Icon(
+                                        Icons.add,
+                                        size: 25,
+                                      ),
                                     ),
-                                  ),
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.favorite_border,
-                                        color: Colors.red,
-                                      ))
-                                ],
-                              ),
-                              Stack(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/003.png',
-                                    fit: BoxFit.cover,
-                                    height: 160,
-                                  ),
-                                  const Positioned(
-                                    bottom: 20,
-                                    left: 0,
-                                    child: Text('Chars'),
-                                  ),
-                                  const Positioned(
-                                    bottom: 0,
-                                    left: 20,
-                                    child: Text(
-                                      ' \$ 143._',
-                                      style: TextStyle(
-                                          color: Colors.blue,
+                                    IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.favorite_border,
+                                          color: AppColors.kRed,
+                                        ))
+                                  ],
+                                ),
+                                Stack(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/003.png',
+                                      fit: BoxFit.cover,
+                                      height: 160,
+                                    ),
+                                    const Positioned(
+                                      bottom: 20,
+                                      left: 0,
+                                      child: Text('Chars'),
+                                    ),
+                                    Positioned(
+                                      bottom: 0,
+                                      left: 20,
+                                      child: Text(
+                                        ' \$ 143._',
+                                        style: TextStyle(
+                                          color: AppColors.kBlue,
                                           fontSize: 18,
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -143,9 +149,13 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: ElevatedButton(
           onPressed: () {},
-          child: const Text(
+          child: Text(
             'Scan my Space',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 20,
+                //backgroundColor: AppColors.kBlue,
+                color: AppColors.kWhite,
+                fontWeight: FontWeight.bold),
           )),
     );
   }

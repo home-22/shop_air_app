@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_air_app/colors/app_colors.dart';
 
 class RangeCard extends StatelessWidget {
   final String title;
@@ -12,8 +13,11 @@ class RangeCard extends StatelessWidget {
         height: 30,
         width: 110,
         decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-            border: Border.all(color: Colors.grey)),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(8.0),
+          ),
+          border: Border.all(color: AppColors.kGrey),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
