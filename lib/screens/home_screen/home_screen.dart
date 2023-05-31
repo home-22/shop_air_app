@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
+
 import 'package:shop_air_app/screens/home_screen/components/range_card.dart';
 import 'package:shop_air_app/screens/items_screen/items_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -47,116 +50,77 @@ class _HomeScreenState extends State<HomeScreen> {
         physics: const BouncingScrollPhysics(),
         slivers: [
           SliverList(
-            delegate: SliverChildListDelegate([
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    RangeCard(title: 'Price Range'),
-                    RangeCard(title: 'Tags'),
-                    RangeCard(title: 'Style'),
-                    RangeCard(title: 'Color'),
-                  ],
+            delegate: SliverChildListDelegate(
+              [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      RangeCard(title: 'Price Range'),
+                      RangeCard(title: 'Tags'),
+                      RangeCard(title: 'Style'),
+                      RangeCard(title: 'Color'),
+                    ],
+                  ),
                 ),
-              )
-            ]),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.all(2.0),
-            sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 300.0,
-                mainAxisSpacing: 10.0,
-                crossAxisSpacing: 5.0,
-                childAspectRatio: 1.0,
-              ),
-              delegate: SliverChildListDelegate(
-                [
-                  for (int i = 0; i < 4; i++)
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ItemsScreen(),
-                          ),
-                        );
-                      },
-                      child: Scaffold(
-                        backgroundColor: AppColors.kWhite,
-                        body: Card(
-                          child: SingleChildScrollView(
+                SizedBox(
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.99,
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    children: [
+                      for (int i = 1; i < 11; i++)
+                        Container(
+                            padding: const EdgeInsets.all(5.0),
                             child: Column(
                               children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const CircleAvatar(
-                                      radius: 12,
-                                      child: Icon(
-                                        Icons.add,
-                                        size: 25,
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ItemsScreen(),
                                       ),
+                                    );
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Image.asset(
+                                      'assets/images/$i.png',
+                                      width: 120,
+                                      height: 120,
                                     ),
-                                    IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.favorite_border,
-                                          color: AppColors.kRed,
-                                        ))
-                                  ],
+                                  ),
                                 ),
-                                Stack(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/003.png',
-                                      fit: BoxFit.cover,
-                                      height: 160,
-                                    ),
-                                    const Positioned(
-                                      bottom: 20,
-                                      left: 0,
-                                      child: Text('Chars'),
-                                    ),
-                                    Positioned(
-                                      bottom: 0,
-                                      left: 20,
-                                      child: Text(
-                                        ' \$ 143._',
-                                        style: TextStyle(
-                                          color: AppColors.kBlue,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(),
+                                  child: Text('It de not ver'),
+                                )
                               ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
+                            )),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: ElevatedButton(
-          onPressed: () {},
-          child: Text(
-            'Scan my Space',
-            style: TextStyle(
-                fontSize: 20,
-                //backgroundColor: AppColors.kBlue,
-                color: AppColors.kWhite,
-                fontWeight: FontWeight.bold),
-          )),
+        onPressed: () {},
+        child: Text(
+          'Scan my Space',
+          style: TextStyle(
+            fontSize: 20,
+            color: AppColors.kWhite,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     );
   }
 }

@@ -21,7 +21,7 @@ class ItemsScreen extends StatelessWidget {
                 },
                 icon: const Icon(Icons.arrow_back_ios),
               ),
-              Image.asset('assets/images/001.png'),
+              Image.asset('assets/images/1.png'),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
                 child: Text(

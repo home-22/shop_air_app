@@ -6,7 +6,7 @@ class Items {
   final String description;
   final String price;
   final String image;
-  final List<Color> loadColors;
+  // final List<Color> loadColors;
 
   const Items({
     required this.id,
@@ -14,6 +14,6 @@ class Items {
     required this.description,
     required this.price,
     required this.image,
-    required this.loadColors,
+//    required this.loadColors,
   });
 }
