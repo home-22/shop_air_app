@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "770352661061",
+    "project_id": "shop-air-app",
+    "storage_bucket": "shop-air-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770352661061:android:75a8909056d628f0c6d92c",
+        "android_client_info": {
+          "package_name": "com.example.shop_air_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770352661061-a5427ibejei0e8iavif07c2og7jq2riq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_9DXufZm72S7mmSJcZ1L_QH-DK69a7PE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770352661061-a5427ibejei0e8iavif07c2og7jq2riq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

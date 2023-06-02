@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Quantity extends StatelessWidget {
   const Quantity({super.key});
@@ -14,10 +15,16 @@ class Quantity extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              children: const [
-                Icon(CupertinoIcons.add),
+              children: [
+                IconButton(
+                  icon: Icon(CupertinoIcons.add),
+                  onPressed: () {},
+                ),
                 Text('01'),
-                Icon(CupertinoIcons.minus)
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(CupertinoIcons.minus),
+                ),
               ],
             ),
           )
