@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 
+import 'package:shop_air_app/screens/drawer_screen/drawer_screen.dart';
+
 import 'package:shop_air_app/screens/home_screen/components/range_card.dart';
-import 'package:shop_air_app/screens/items_screen/items_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -14,20 +16,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final Stream<QuerySnapshot> _prodcutsStream = FirebaseFirestore.instance
+      .collection('products')
+      .where('mainCateg', isEqualTo: 'accessories')
+      .snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerScreen(),
       backgroundColor: AppColors.kWhite,
       appBar: AppBar(
-        backgroundColor: AppColors.kWhite,
+        backgroundColor: AppColors.kBlue,
         elevation: 0,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.menu_outlined,
-            color: AppColors.kBlack,
-          ),
-        ),
         title: Row(
 //          mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -57,53 +57,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                      RangeCard(title: 'Price Range'),
-                      RangeCard(title: 'Tags'),
-                      RangeCard(title: 'Style'),
-                      RangeCard(title: 'Color'),
+                      RangeCard(title: 'Men'),
+                      RangeCard(title: 'Women'),
+                      RangeCard(title: 'Shoes'),
+                      RangeCard(title: 'Kids'),
                     ],
                   ),
                 ),
-                SizedBox(
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.99,
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    children: [
-                      for (int i = 1; i < 11; i++)
-                        Container(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Column(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ItemsScreen(),
-                                      ),
-                                    );
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                      'assets/images/$i.png',
-                                      width: 120,
-                                      height: 120,
-                                    ),
-                                  ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(),
-                                  child: Text('It de not ver'),
-                                )
-                              ],
-                            )),
-                    ],
-                  ),
-                )
               ],
             ),
           ),

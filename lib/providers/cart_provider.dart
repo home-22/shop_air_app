@@ -28,13 +28,14 @@ class Cart extends ChangeNotifier {
     String documentId,
   ) {
     final product = Product(
-        name: name,
-        description: '',
-        price: price,
-        qty: qty,
-        qntty: qntty,
-        documentId: documentId,
-        imageUrl: imagesUrl);
+      name: name,
+      description: '',
+      price: price,
+      qty: qty,
+      qntty: qntty,
+      documentId: documentId,
+      imageUrl: imagesUrl,
+    );
     _list.add(product);
     notifyListeners();
   }
