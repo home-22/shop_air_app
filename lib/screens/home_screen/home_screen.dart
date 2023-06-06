@@ -5,6 +5,8 @@ import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/screens/drawer_screen/drawer_screen.dart';
 
 import 'package:shop_air_app/screens/home_screen/components/range_card.dart';
+import 'package:shop_air_app/screens/men_screen_gallery/men_gallery_screen.dart';
+import 'package:shop_air_app/screens/women_screen.gallery/women_screen_gallery.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -16,68 +18,43 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final Stream<QuerySnapshot> _prodcutsStream = FirebaseFirestore.instance
-      .collection('products')
-      .where('mainCateg', isEqualTo: 'accessories')
-      .snapshots();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const DrawerScreen(),
-      backgroundColor: AppColors.kWhite,
-      appBar: AppBar(
-        backgroundColor: AppColors.kBlue,
-        elevation: 0,
-        title: Row(
-//          mainAxisAlignment: MainAxisAlignment.center,
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: Text('What'),
+          bottom: TabBar(
+            isScrollable: true,
+            indicatorColor: AppColors.kRed,
+            indicatorWeight: 5,
+            tabs: const [
+              RangeCard(title: 'Men'),
+              RangeCard(title: 'Women'),
+              RangeCard(title: 'Shoes'),
+              RangeCard(title: 'Bags')
+            ],
+          ),
+        ),
+        body: const TabBarView(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 40),
-              child: Text(
-                'Categories',
-                style:
-                    TextStyle(fontFamily: 'Helvetica', color: AppColors.kBlack),
-              ),
-            ),
-            Icon(
-              Icons.arrow_drop_down,
-              color: AppColors.kBlack,
-            ),
+            MenGalleryScreen(),
+            WomenGaleryScreen(),
           ],
         ),
-      ),
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      RangeCard(title: 'Men'),
-                      RangeCard(title: 'Women'),
-                      RangeCard(title: 'Shoes'),
-                      RangeCard(title: 'Kids'),
-                    ],
-                  ),
-                ),
-              ],
+        backgroundColor: AppColors.kWhite,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: ElevatedButton(
+          onPressed: () {},
+          child: Text(
+            'Scan my Space',
+            style: TextStyle(
+              fontSize: 20,
+              color: AppColors.kWhite,
+              fontWeight: FontWeight.bold,
             ),
-          ),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: ElevatedButton(
-        onPressed: () {},
-        child: Text(
-          'Scan my Space',
-          style: TextStyle(
-            fontSize: 20,
-            color: AppColors.kWhite,
-            fontWeight: FontWeight.bold,
           ),
         ),
       ),
