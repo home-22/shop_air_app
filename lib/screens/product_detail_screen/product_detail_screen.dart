@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
-import 'package:shop_air_app/screens/items_screen/components/colors_items.dart';
-import 'package:shop_air_app/screens/items_screen/components/quantity.dart';
+import 'package:shop_air_app/data/dummy_data_list.dart';
+import 'package:shop_air_app/model/product.dart';
+import 'package:shop_air_app/screens/product_detail_screen/components/colors_items.dart';
+import 'package:shop_air_app/screens/product_detail_screen/components/quantity.dart';
 
-class ItemsScreen extends StatelessWidget {
-  const ItemsScreen({super.key});
+class ProductDetaliScreen extends StatelessWidget {
+  final String id;
+  const ProductDetaliScreen({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
+    final Product product = dummyData.firstWhere(
+      (element) => element.id == id,
+    );
     return Scaffold(
       backgroundColor: AppColors.kWhite,
       body: SafeArea(
@@ -21,7 +27,7 @@ class ItemsScreen extends StatelessWidget {
                 },
                 icon: const Icon(Icons.arrow_back_ios),
               ),
-              Image.asset('assets/images/1.png'),
+              Image.asset(product.image),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
                 child: Text(
@@ -37,7 +43,7 @@ class ItemsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 10.0, vertical: 10.0),
                 child: Text(
-                  '\$ 140. _',
+                  product.price,
                   style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -47,7 +53,7 @@ class ItemsScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
-                  'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
+                  product.description,
                   style: TextStyle(
                     fontSize: 18,
                     color: AppColors.kGrey,

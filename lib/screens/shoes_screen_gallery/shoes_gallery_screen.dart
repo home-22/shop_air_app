@@ -10,6 +10,10 @@ class ShoesGalleryScreen extends StatefulWidget {
 class _ShoesGalleryScreenState extends State<ShoesGalleryScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold(
+      body: Center(
+        child: Text('U izradi'),
+      ),
+    );
   }
 }

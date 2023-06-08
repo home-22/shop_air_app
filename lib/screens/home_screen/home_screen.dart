@@ -1,11 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
-
-import 'package:shop_air_app/screens/drawer_screen/drawer_screen.dart';
-
+import 'package:shop_air_app/screens/bags_screen_gallery/bags_screen_gallery.dart';
 import 'package:shop_air_app/screens/home_screen/components/range_card.dart';
 import 'package:shop_air_app/screens/men_screen_gallery/men_gallery_screen.dart';
+import 'package:shop_air_app/screens/shoes_screen_gallery/shoes_gallery_screen.dart';
 import 'package:shop_air_app/screens/women_screen.gallery/women_screen_gallery.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,7 +23,10 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          title: Text('What'),
+          title: Text(
+            'Welcome to Shop',
+            style: TextStyle(fontSize: 24, color: AppColors.kWhite),
+          ),
           bottom: TabBar(
             isScrollable: true,
             indicatorColor: AppColors.kRed,
@@ -42,6 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             MenGalleryScreen(),
             WomenGaleryScreen(),
+            ShoesGalleryScreen(),
+            BagsGalleryScreen(),
           ],
         ),
         backgroundColor: AppColors.kWhite,

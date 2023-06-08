@@ -10,6 +10,10 @@ class BagsGalleryScreen extends StatefulWidget {
 class _BagsGalleryScreenState extends State<BagsGalleryScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold(
+      body: Center(
+        child: Text('U izradi'),
+      ),
+    );
   }
 }

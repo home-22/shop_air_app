@@ -10,6 +10,10 @@ class WomenGaleryScreen extends StatefulWidget {
 class _WomenGaleryScreenState extends State<WomenGaleryScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold(
+      body: Center(
+        child: Text('U izradi'),
+      ),
+    );
   }
 }
