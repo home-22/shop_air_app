@@ -28,17 +28,18 @@ class ProductDetaliScreen extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back_ios),
               ),
               Image.asset(product.image),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Text(
-                  'Night Stand',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  product.name,
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-                child: Text('Night Stands'),
-              ),
+              //  Padding(
+              //    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+              //    child: Text(product.description),
+              //  ),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 10.0, vertical: 10.0),
