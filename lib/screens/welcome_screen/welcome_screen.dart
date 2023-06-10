@@ -13,8 +13,8 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
           children: [
             Image.asset(
-              'assets/images/welcome.png',
-              height: 500,
+              'assets/images/electronics13.jpg',
+              height: 300,
               width: double.infinity,
               filterQuality: FilterQuality.high,
               fit: BoxFit.cover,
