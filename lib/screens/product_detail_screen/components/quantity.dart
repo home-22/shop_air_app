@@ -17,13 +17,19 @@ class Quantity extends StatelessWidget {
             child: Row(
               children: [
                 IconButton(
-                  icon: Icon(CupertinoIcons.add),
+                  icon: const Icon(
+                    CupertinoIcons.add,
+                    size: 25,
+                  ),
                   onPressed: () {},
                 ),
-                Text('01'),
+                const Text('01'),
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(CupertinoIcons.minus),
+                  icon: const Icon(
+                    CupertinoIcons.minus,
+                    size: 25,
+                  ),
                 ),
               ],
             ),
