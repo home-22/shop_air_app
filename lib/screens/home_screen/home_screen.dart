@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/data/dummy_data_list.dart';
+import 'package:shop_air_app/model/product.dart';
 import 'dart:io';
 
 import 'package:shop_air_app/screens/add_product_screen/add_product_screen.dart';
@@ -19,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.kRed,
         elevation: 0,
         title: Text(
           'Awesome Store',
@@ -54,8 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(5.0),
               ),
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 child: Column(
                   children: [
                     Expanded(
@@ -69,13 +70,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(5.0),
                       child: Text(dummyData[i].name),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(5.0),
                       child: Text(dummyData[i].price),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -97,7 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
             final newProduct = await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AddProductScreen(productList: dummyData),
+                builder: (context) => AddProductScreen(
+                  productList: dummyData,
+                ),
               ),
             );
             // uslov za novi prizvod koji nije jednak null tada se izvršava
