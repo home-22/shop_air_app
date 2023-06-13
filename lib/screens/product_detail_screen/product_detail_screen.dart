@@ -3,6 +3,7 @@ import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/data/dummy_data_list.dart';
 import 'package:shop_air_app/model/product.dart';
 import 'package:shop_air_app/screens/add_product_screen/add_product_screen.dart';
+
 import 'package:shop_air_app/screens/product_detail_screen/components/colors_items.dart';
 import 'package:shop_air_app/screens/product_detail_screen/components/quantity.dart';
 import 'dart:io';
@@ -48,11 +49,14 @@ class ProductDetaliScreen extends StatelessWidget {
                     IconButton(
                       onPressed: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AddProductScreen(
-                                    product: product,
-                                    productList: productList)));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddProductScreen(
+                              product: product,
+                              productList: productList,
+                            ),
+                          ),
+                        );
                       },
                       icon: const Icon(Icons.edit),
                     ),
