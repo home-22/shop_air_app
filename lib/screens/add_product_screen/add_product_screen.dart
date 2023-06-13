@@ -71,7 +71,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: AppColors.kRed,
-          title: const Text('Add Product to List..'),
+          title: Text(widget.product == null ? 'Add Product' : 'Edit Product'),
         ),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -150,59 +150,60 @@ class _AddProductScreenState extends State<AddProductScreen> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-            child: const Icon(Icons.save),
-            onPressed: () {
-              if (form.currentState!.validate()) {
-                //  ako je widget.product ima vrijednost  tada uređujemo postojući prizvod.
-                // Azuriramo  prizvod sa unesenim novim vrijednostima i zamjenujemo postojeci  u productListi sa ažuriranim prizvodiom
-                // ako je widget product ima vrijednost null tada ce dodati novi prizvod na listu
-                if (widget.product == null) {
-                  // Dodajemo novi prizvod na listu
-                  Product newProduct = Product(
-                    id: UniqueKey().toString(),
-                    name: nameController.text,
-                    description: descController.text,
-                    price: priceController.text,
-                    image: selectedImage!,
-                    isAssetImage: false,
-                  );
+          child: const Icon(Icons.save),
+          onPressed: () {
+            if (form.currentState!.validate()) {
+              //  ako je widget.product ima vrijednost  tada uređujemo postojući prizvod.
+              // Azuriramo  prizvod sa unesenim novim vrijednostima i zamjenujemo postojeci  u productListi sa ažuriranim prizvodiom
+              // ako je widget product ima vrijednost null tada ce dodati novi prizvod na listu
+              if (widget.product == null) {
+                // Dodajemo novi prizvod na listu
+                Product newProduct = Product(
+                  id: UniqueKey().toString(),
+                  name: nameController.text,
+                  description: descController.text,
+                  price: priceController.text,
+                  image: selectedImage!,
+                  isAssetImage: false,
+                );
+                setState(() {
+                  widget.productList.add(newProduct);
+                });
+              } else {
+                // ovdje ažuriramo  postojeći prizvod na listi
+                Product updateProduct = Product(
+                  id: widget.product!.id,
+                  name: nameController.text,
+                  description: descController.text,
+                  price: priceController.text,
+                  image: selectedImage ?? widget.product!.image,
+                  isAssetImage: widget.product!.isAssetImage,
+                );
+
+                // metoda indexWhere se poziva  na widgetom.productList tj primjenuje se
+                // na svaki element u listi Ova metoda prima funkciju koja se izvršava za svaki element i provjerava određeni uslov
+                // u ovom  slučaju uslov(uvjet) je id prizvoda jednak id trenutnog uređivanog prizvoda widget.product!.id
+                final index = widget.productList
+                    .indexWhere((product) => product.id == widget.product!.id);
+                if (index != -1) {
+                  // obavještavamo da se stanje aplikacije mijenja ažuriramo nove podatke
+                  // tj na odgovarajući index widget.productList čime se ažurira postojeći prizvod
+
                   setState(() {
-                    widget.productList.add(newProduct);
+                    widget.productList[index] = updateProduct;
                   });
-                } else {
-                  // ovdje ažuriramo  postojeći prizvod na listi
-                  Product updateProduct = Product(
-                    id: widget.product!.id,
-                    name: nameController.text,
-                    description: descController.text,
-                    price: priceController.text,
-                    image: selectedImage ?? widget.product!.image,
-                    isAssetImage: widget.product!.isAssetImage,
-                  );
-
-                  // metoda indexWhere se poziva  na widgetom.productList tj primjenuje se
-                  // na svaki element u listi Ova metoda prima funkciju koja se izvršava za svaki element i provjerava određeni uslov
-                  // u ovom  slučaju uslov(uvjet) je id prizvoda jednak id trenutnog uređivanog prizvoda widget.product!.id
-                  final index = widget.productList.indexWhere(
-                      (product) => product.id == widget.product!.id);
-                  if (index != -1) {
-                    // obavještavamo da se stanje aplikacije mijenja ažuriramo nove podatke
-                    // tj na odgovarajući index widget.productList čime se ažurira postojeći prizvod
-
-                    setState(() {
-                      widget.productList[index] = updateProduct;
-                    });
-                  }
                 }
-
-                FocusScope.of(context).unfocus();
-                // ocistiti kontrolere nakon sto spremimo podatke
-                nameController.clear();
-                descController.clear();
-                priceController.clear();
-                Navigator.pop(context);
               }
-            }),
+
+              FocusScope.of(context).unfocus();
+              // ocistiti kontrolere nakon sto spremimo podatke
+              nameController.clear();
+              descController.clear();
+              priceController.clear();
+              Navigator.pop(context);
+            }
+          },
+        ),
       ),
     );
   }
