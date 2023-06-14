@@ -71,7 +71,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         ElevatedButton(
                           onPressed: () {},
                           child: Text(product.price),
-                        )
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              // brisemo prizvod sa liste koristci index prizvoda
+                              // setState koristimo da aziriramo listu  nakon brisana
+                              setState(() {
+                                productList.removeAt(index);
+                              });
+                            },
+                            icon: Icon(
+                              Icons.delete,
+                              color: AppColors.kRed,
+                            ))
                       ],
                     ),
                   ],
