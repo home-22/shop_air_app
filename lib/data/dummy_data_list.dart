@@ -8,7 +8,7 @@ List<Product> dummyData = [
         'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
     price: '1150.00',
     image: 'assets/images/electronics0.jpg',
-    isAssetImage: true,
+    isAssetImage: false,
   ),
   Product(
     id: '45hg546h657jn467j2',
@@ -17,7 +17,7 @@ List<Product> dummyData = [
         'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
     price: '450.00',
     image: 'assets/images/electronics1.jpg',
-    isAssetImage: true,
+    isAssetImage: false,
   ),
   Product(
     id: '45hg546h657jn467j3',
@@ -26,7 +26,7 @@ List<Product> dummyData = [
         'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
     price: '1220.00',
     image: 'assets/images/electronics2.jpg',
-    isAssetImage: true,
+    isAssetImage: false,
   ),
   Product(
     id: '45hg546h657jn467j4',
@@ -35,7 +35,7 @@ List<Product> dummyData = [
         'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
     price: '644.00',
     image: 'assets/images/electronics3.jpg',
-    isAssetImage: true,
+    isAssetImage: false,
   ),
   Product(
     id: '45hg546h657jn467j5',
@@ -44,7 +44,7 @@ List<Product> dummyData = [
         'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
     price: '14.00',
     image: 'assets/images/electronics4.jpg',
-    isAssetImage: true,
+    isAssetImage: false,
   ),
   Product(
     id: '45hg546h657jn467j6',
@@ -53,7 +53,7 @@ List<Product> dummyData = [
         'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
     price: '20.00',
     image: 'assets/images/electronics5.jpg',
-    isAssetImage: true,
+    isAssetImage: false,
   ),
   Product(
     id: '45hg546h657jn467j7',
@@ -62,7 +62,7 @@ List<Product> dummyData = [
         'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
     price: '11.00',
     image: 'assets/images/electronics6.jpg',
-    isAssetImage: true,
+    isAssetImage: false,
   ),
   Product(
     id: '45hg546h657jn467j8',
@@ -71,7 +71,7 @@ List<Product> dummyData = [
         'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
     price: '38.00',
     image: 'assets/images/electronics7.jpg',
-    isAssetImage: true,
+    isAssetImage: false,
   ),
   Product(
     id: '45hg546h657jn467j9',
@@ -80,7 +80,7 @@ List<Product> dummyData = [
         'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
     price: '64.50',
     image: 'assets/images/electronics8.jpg',
-    isAssetImage: true,
+    isAssetImage: false,
   ),
   Product(
     id: '45hg546h657jn467j10',
@@ -89,7 +89,7 @@ List<Product> dummyData = [
         'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
     price: '43.00',
     image: 'assets/images/electronics10.jpg',
-    isAssetImage: true,
+    isAssetImage: false,
   ),
   Product(
     id: '45hg546h657jn467j11',
@@ -98,7 +98,7 @@ List<Product> dummyData = [
         'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
     price: '54.50',
     image: 'assets/images/electronics11.jpg',
-    isAssetImage: true,
+    isAssetImage: false,
   ),
   Product(
     id: '45hg546h657jn467j12',
@@ -107,6 +107,6 @@ List<Product> dummyData = [
         'Lorem ipsum dolor sit amet,consecte-\ntuer adipiscing elit,sed diam nonummy\nribh euismod tincidunt ut laoreet dolore\nmagna aliquam erat volutpat.',
     price: '78.50',
     image: 'assets/images/electronics12.jpg',
-    isAssetImage: true,
+    isAssetImage: false,
   ),
 ];
