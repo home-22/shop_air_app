@@ -55,18 +55,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(product.name),
                     Row(
                       children: [
+                        // Ako selectedImage nije null i jeste asset slika,
+                        // prikazujemo sliku koristeći Image.asset()
+
                         SizedBox(
                           height: 120,
                           width: 120,
-                          // ovdje dodajemo uslov za prikaz slike i provjeravamo vrijednost isAssetImage u objektu Product u modelu koji imamo
-                          // ako je postavljeno na true koristimo Image.asset sa putanjom dummyData.image
-                          // ako je false koristimo Image.file sa putanjom dummyData.image
                           child: product.isAssetImage
-                              ? Image.asset(product.image)
+                              ? Image.asset(
+                                  product.image,
+                                  filterQuality: FilterQuality.high,
+                                )
                               : Image.file(
                                   File(product.image),
+                                  filterQuality: FilterQuality.high,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Image.asset(product.image);
+                                  },
                                 ),
                         ),
+
                         const Spacer(),
                         ElevatedButton(
                           onPressed: () {},
