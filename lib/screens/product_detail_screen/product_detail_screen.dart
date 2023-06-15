@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/data/dummy_data_list.dart';
 import 'package:shop_air_app/model/product.dart';
-import 'package:shop_air_app/screens/add_product_screen/add_product_screen.dart';
+
+import 'package:shop_air_app/screens/edit_product_screen/edit_product_screen.dart';
 
 import 'package:shop_air_app/screens/product_detail_screen/components/colors_items.dart';
 import 'package:shop_air_app/screens/product_detail_screen/components/quantity.dart';
@@ -51,7 +52,7 @@ class ProductDetaliScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AddProductScreen(
+                            builder: (context) => EditProductScreen(
                               product: product,
                               productList: productList,
                             ),
@@ -69,9 +70,27 @@ class ProductDetaliScreen extends StatelessWidget {
               // ako je false koristimo Image.file sa istom putanjom
               // na taj način prilagodimo prikaz slike na temelju vrijednosti isAssetImage
               product.isAssetImage
-                  ? Image.asset(product.image)
-                  : Image.file(
-                      File(product.image),
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        product.image,
+                        height: 260,
+                      ),
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.file(
+                        File(
+                          product.image,
+                        ),
+                        height: 260,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            product.image,
+                            height: 260,
+                          );
+                        },
+                      ),
                     ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
