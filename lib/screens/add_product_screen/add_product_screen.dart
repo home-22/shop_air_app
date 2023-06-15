@@ -27,7 +27,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController descController = TextEditingController();
   String? selectedImage;
+
   bool imageSelected = false;
+
 // _selectImage() za odabir slike iz galerije uređaja
   Future<void> _seletImage() async {
 // zatim se poziva metoda pickImage() nad imagePicker objektom i prosljeđuje se
@@ -44,18 +46,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
     if (pickedImage != null) {
       setState(() {
         selectedImage = pickedImage.path;
-        imageSelected = true;
+        imageSelected = false;
       });
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    if (widget.product != null) {
-      priceController.text = widget.product!.price;
-      nameController.text = widget.product!.name;
-      descController.text = widget.product!.description;
     }
   }
 
@@ -71,7 +63,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: AppColors.kRed,
-          title: Text(widget.product == null ? 'Add Product' : 'Edit Product'),
+          title: const Text('Add Product'),
         ),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -108,6 +100,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           labelText: 'product name',
                           hintText: 'Enter product name ',
                         ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'please enter product name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                   ),
@@ -135,7 +133,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   ),
                   // ako selectedImage je razlicit od null
                   // ovo osigurava da ce se slika prikazati ako postoji odabrana slika
-                  if (selectedImage != null)
+                  if (selectedImage != null && !imageSelected)
 
                     // Image.file(File(selectedImage!)) kreira (Image) widget koji prikazuje sliku
                     // na osnovu putanje selctedImage File(selectedImage!) i konvertuje putanju selcetedImage u File objekat
@@ -143,6 +141,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
                     Image.file(
                       File(selectedImage!),
+                      width: 260,
+                    ),
+                  if (selectedImage != null && imageSelected)
+                    Image.asset(
+                      selectedImage!,
+                      width: 260,
                     ),
                 ],
               ),
@@ -169,30 +173,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 setState(() {
                   widget.productList.add(newProduct);
                 });
-              } else {
-                // ovdje ažuriramo  postojeći prizvod na listi
-                Product updateProduct = Product(
-                  id: widget.product!.id,
-                  name: nameController.text,
-                  description: descController.text,
-                  price: priceController.text,
-                  image: selectedImage ?? widget.product!.image,
-                  isAssetImage: widget.product!.isAssetImage,
-                );
-
-                // metoda indexWhere se poziva  na widgetom.productList tj primjenuje se
-                // na svaki element u listi Ova metoda prima funkciju koja se izvršava za svaki element i provjerava određeni uslov
-                // u ovom  slučaju uslov(uvjet) je id prizvoda jednak id trenutnog uređivanog prizvoda widget.product!.id
-                final index = widget.productList
-                    .indexWhere((product) => product.id == widget.product!.id);
-                if (index != -1) {
-                  // obavještavamo da se stanje aplikacije mijenja ažuriramo nove podatke
-                  // tj na odgovarajući index widget.productList čime se ažurira postojeći prizvod
-
-                  setState(() {
-                    widget.productList[index] = updateProduct;
-                  });
-                }
               }
 
               FocusScope.of(context).unfocus();
