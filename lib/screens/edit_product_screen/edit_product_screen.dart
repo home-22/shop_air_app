@@ -2,16 +2,18 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
+
 import 'package:shop_air_app/model/product.dart';
+import 'package:shop_air_app/providers/cart_provider.dart';
 
 class EditProductScreen extends StatefulWidget {
   final Product? product;
-  final List<Product> productList;
+
   const EditProductScreen({
     super.key,
     required this.product,
-    required this.productList,
   });
 
   @override
@@ -136,7 +138,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       size: 35,
                     ),
                   ),
-
                   // ako je selectedImage null vracamo zadanu sliku iz image.assets
                   // u suprotnom ako nije vracamo sliku iz Image.file
                   if (selectedImage == null)
@@ -177,7 +178,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
             onPressed: () {
               if (from.currentState!.validate()) {
                 // ovdje ažuriramo  postojeći prizvod na listi
-                Product updatedProduct = Product(
+                final updatedProduct = Product(
                   id: widget.product!.id,
                   name: nameController.text,
                   description: descController.text,
@@ -185,16 +186,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   image: selectedImage ?? widget.product!.image,
                   isAssetImage: widget.product!.isAssetImage,
                 );
+                context.read<CartProvider>().updatedItem(updatedProduct);
                 // metoda indexWhere se poziva  na widgetom.productList tj primjenuje se
                 // na svaki element u listi Ova metoda prima funkciju koja se izvršava za svaki element i provjerava određeni uslov
                 // u ovom  slučaju uslov(uvjet) je id prizvoda jednak id trenutnog uređivanog prizvoda widget.product!.id
-                final index = widget.productList
-                    .indexWhere((product) => product.id == widget.product!.id);
-                if (index != -1) {
-                  setState(() {
-                    widget.productList[index] = updatedProduct;
-                  });
-                }
+                // final index = dummyData
+                //     .indexWhere((product) => product.id == widget.product!.id);
+                // if (index != -1) {
+                //  setState(() {
+                //    dummyData[index] = updatedProduct;
+                //  });
+                // }
                 FocusScope.of(context).unfocus();
                 Navigator.pop(context);
               }

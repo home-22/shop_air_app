@@ -1,20 +1,17 @@
 // ignore_for_file: depend_on_referenced_packages
-
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
-
 import 'package:shop_air_app/model/product.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shop_air_app/providers/cart_provider.dart';
 
 class AddProductScreen extends StatefulWidget {
   final Product? product;
-  final List<Product> productList;
   const AddProductScreen({
     super.key,
     this.product,
-    required this.productList,
   });
 
   @override
@@ -162,7 +159,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
               // ako je widget product ima vrijednost null tada ce dodati novi prizvod na listu
               if (widget.product == null) {
                 // Dodajemo novi prizvod na listu
-                Product newProduct = Product(
+                final newProduct = Product(
                   id: UniqueKey().toString(),
                   name: nameController.text,
                   description: descController.text,
@@ -170,11 +167,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   image: selectedImage!,
                   isAssetImage: false,
                 );
-                setState(() {
-                  widget.productList.add(newProduct);
-                });
+                context.read<CartProvider>().addItem(newProduct);
+                //  setState(() {
+                //   dummyData.add(newProduct);
+                // });
               }
-
               FocusScope.of(context).unfocus();
               // ocistiti kontrolere nakon sto spremimo podatke
               nameController.clear();

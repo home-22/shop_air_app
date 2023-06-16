@@ -15,8 +15,3 @@ class Product {
     required this.isAssetImage,
   });
 }
-
-List<Product> productList = [];
-// productList je prazna list objekta tipa Product
-// mozemo pohraniti više instanci  klase Product
-//  dadajemo  tako pomocu metode add productList.add(product1 );
