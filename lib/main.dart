@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_air_app/providers/cart_provider.dart';
 import 'package:shop_air_app/screens/welcome_screen/welcome_screen.dart';
 
 void main()
@@ -6,7 +8,9 @@ void main()
 {
   //WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => CartProvider())],
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
