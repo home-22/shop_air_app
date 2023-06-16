@@ -1,7 +1,11 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/data/dummy_data_list.dart';
 import 'package:shop_air_app/model/product.dart';
+import 'package:shop_air_app/providers/cart_provider.dart';
 
 import 'package:shop_air_app/screens/edit_product_screen/edit_product_screen.dart';
 
@@ -11,15 +15,14 @@ import 'dart:io';
 
 class ProductDetaliScreen extends StatelessWidget {
   final String id;
-  final List<Product> productList;
   const ProductDetaliScreen({
     super.key,
     required this.id,
-    required this.productList,
   });
 
   @override
   Widget build(BuildContext context) {
+    final cardProvider = Provider.of<CartProvider>(context);
     // metoda firstWhere uzima funkciju (anonimnu u ovom slucaju)
     //  koja prima element iz liste i provjerava njegaov id jel jednak traženom id
     // kada pronađe prvi element koji odgovara tom uvjetu vraća taj element
@@ -27,7 +30,7 @@ class ProductDetaliScreen extends StatelessWidget {
     // varijabla. product sadrži prvi prizvod iz liste dummyData čije id odgovara id koji smo prosljedili
     // konstruktoru ProductDetailScrenn i taj se prizvod prikazuje na ekranu ProductDatailScreen
     final Product product = dummyData.firstWhere(
-      (element) => element.id == id,
+      (product) => product.id == id,
     );
     return Scaffold(
       backgroundColor: AppColors.kWhite,
@@ -54,7 +57,6 @@ class ProductDetaliScreen extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => EditProductScreen(
                               product: product,
-                              productList: productList,
                             ),
                           ),
                         );
