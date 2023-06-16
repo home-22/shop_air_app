@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:shop_air_app/data/dummy_data_list.dart';
 import 'package:shop_air_app/model/product.dart';
 
-class Cart extends ChangeNotifier {
-  final List<Product> _list = [];
+class CartProvider with ChangeNotifier {
+  final List<Product> dummyDate = [];
+
   List<Product> get getItems {
-    return _list;
+    return [...dummyDate];
   }
 
+  List<Product> get items => dummyDate;
   int? get count {
-    return _list.length;
+    return dummyDate.length;
   }
 
-  void reduceByOne(Product product) {
-    _list.remove(product);
+  void addItem(Product newProduct) {
+    dummyData.add(newProduct);
     notifyListeners();
   }
 
-  void removeItem(Product product) {
-    _list.remove(product);
+  void updatedItem(Product updatedProduct) {
+    final index =
+        dummyData.indexWhere((product) => product.id == updatedProduct.id);
+    if (index != -1) {
+      dummyData[index] = updatedProduct;
+    }
+    notifyListeners();
+  }
+
+  void removeItem(int index) {
+    dummyDate.removeAt(index);
     notifyListeners();
   }
 }
