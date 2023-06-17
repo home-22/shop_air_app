@@ -55,27 +55,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (isSearch) {
                     // printamo kucnje texta
                     print(textSearch.text.trim());
-                    {
-                      setState(() {
-                        //lista dummyData se filtrira pococu medode where i fonkcije predikata
-                        // provjerva sadrzi li ime svakog prizvoda u mail slovima
-                        productList = dummyData
-                            .where(
-                              (element) =>
-                                  //izvrsava svaki element prizvoda u listi  i provjerva jeli pretvoren naziv prizvoda
 
-                                  element.name.toLowerCase().contains(
-                                        // uzimamo sadrzaj texta unesenog u pretrazivanje
-                                        // trim() uklana suvisne razmake sa pcetka i kraja texta
-                                        //zatim pococu metode toLowerCase() pretvra sve zankove u mala slova
-                                        // bez obzira na velicinu slova zelimo izvršiti pretrazivanje i pronaci prizvode bez obrira na velicinu slova napisanim
-                                        textSearch.text.trim().toLowerCase(),
-                                      ),
-                            )
-                            // pretvaramo rezultat u listu
-                            .toList();
-                      });
-                    }
+                    setState(() {
+                      //lista dummyData se filtrira pococu medode where i fonkcije predikata
+                      // provjerva sadrzi li ime svakog prizvoda u mail slovima
+                      productList = dummyData
+                          .where(
+                            (element) =>
+                                //izvrsava svaki element prizvoda u listi  i provjerva jeli pretvoren naziv prizvoda
+
+                                element.name.toLowerCase().contains(
+                                      // uzimamo sadrzaj texta unesenog u pretrazivanje
+                                      // trim() uklana suvisne razmake sa pcetka i kraja texta
+                                      //zatim pococu metode toLowerCase() pretvra sve zankove u mala slova
+                                      // bez obzira na velicinu slova zelimo izvršiti pretrazivanje i pronaci prizvode bez obrira na velicinu slova napisanim
+                                      textSearch.text.trim().toLowerCase(),
+                                    ),
+                          )
+                          // pretvaramo rezultat u listu
+                          .toList();
+                    });
+
                     // dajemo uvjet else koji ce se izvršit ako je pretraženi text prazan
                     //postvljamo productListu na pocetnu listu kada je pretraženi text prazan obnovit ce se cijela lista prizvoda
                   } else {
