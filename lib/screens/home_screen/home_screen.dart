@@ -6,7 +6,8 @@ import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/data/dummy_data_list.dart';
 import 'package:shop_air_app/model/product.dart';
 import 'dart:io';
-import 'package:shop_air_app/screens/add_product_screen/add_product_screen.dart';
+
+import 'package:shop_air_app/screens/home_screen/components/bottom_navigator_bar.dart';
 
 import 'package:shop_air_app/screens/product_detail_screen/product_detail_screen.dart';
 import '../../providers/cart_provider.dart';
@@ -176,25 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: CircleAvatar(
-        radius: 30,
-        backgroundColor: AppColors.kRed,
-        child: IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AddProductScreen(),
-              ),
-            );
-          },
-          icon: const Icon(
-            Icons.add,
-            size: 28,
-          ),
-        ),
-      ),
+      bottomNavigationBar: const BottomNavigatorBar(),
     );
   }
 }
