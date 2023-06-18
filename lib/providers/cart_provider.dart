@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:shop_air_app/data/dummy_data_list.dart';
+
 import 'package:shop_air_app/model/product.dart';
 
 class CartProvider with ChangeNotifier {
-  final List<Product> dummyDate = [];
+  final List<Product> dummyData = [];
 
   List<Product> get getItems {
-    return [...dummyDate];
+    return [...dummyData];
   }
 
-  List<Product> get items => dummyDate;
+  List<Product> get items => dummyData;
   int? get count {
-    return dummyDate.length;
+    return dummyData.length;
   }
 
   void addItem(Product newProduct) {
@@ -29,7 +29,7 @@ class CartProvider with ChangeNotifier {
   }
 
   void removeItem(int index) {
-    dummyDate.removeAt(index);
+    dummyData.removeAt(index);
     notifyListeners();
   }
 }
