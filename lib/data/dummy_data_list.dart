@@ -45,6 +45,7 @@ List<Product> dummyData = [
     price: '14.00',
     image: 'assets/images/electronics4.jpg',
     isAssetImage: false,
+    // type: ItemType.laptops,
   ),
   Product(
     id: '45hg546h657jn467j6',
@@ -54,6 +55,7 @@ List<Product> dummyData = [
     price: '20.00',
     image: 'assets/images/electronics5.jpg',
     isAssetImage: false,
+    // type: ItemType.phones,
   ),
   Product(
     id: '45hg546h657jn467j7',
