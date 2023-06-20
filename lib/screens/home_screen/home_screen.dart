@@ -5,9 +5,12 @@ import 'package:provider/provider.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/data/dummy_data_list.dart';
 import 'package:shop_air_app/model/product.dart';
+import 'package:shop_air_app/screens/add_product_screen/add_product_screen.dart';
+
 import 'dart:io';
 
 import 'package:shop_air_app/screens/home_screen/components/bottom_navigator_bar.dart';
+import 'package:shop_air_app/screens/home_screen/components/range_card.dart';
 
 import 'package:shop_air_app/screens/product_detail_screen/product_detail_screen.dart';
 import '../../providers/cart_provider.dart';
@@ -21,8 +24,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController textSearch = TextEditingController();
   List<Product> productList = dummyData;
+  TextEditingController textSearch = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
