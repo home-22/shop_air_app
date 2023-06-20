@@ -9,6 +9,7 @@ import 'package:shop_air_app/providers/cart_provider.dart';
 
 class AddProductScreen extends StatefulWidget {
   final Product? product;
+
   const AddProductScreen({
     super.key,
     this.product,
@@ -168,9 +169,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   isAssetImage: false,
                 );
                 context.read<CartProvider>().addItem(newProduct);
-                //  setState(() {
-                //   dummyData.add(newProduct);
-                // });
               }
               FocusScope.of(context).unfocus();
               // ocistiti kontrolere nakon sto spremimo podatke
