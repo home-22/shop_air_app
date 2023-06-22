@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 
 import 'package:shop_air_app/model/product.dart';
-import 'package:shop_air_app/providers/cart_provider.dart';
+import 'package:shop_air_app/providers/card_provider.dart';
 
 class EditProductScreen extends StatefulWidget {
   final Product? product;
@@ -26,7 +26,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController descController = TextEditingController();
   String? selectedImage; //putnja odabrane slike
-  bool imageSelected = false; // oznacavamo odabranu sliku
+  bool imageSelected = true; // oznacavamo odabranu sliku
 
   Future<void> _selectImage() async {
 // ImageSource.gallery kao izvor slike Ovo znaci da cemo odbrati sliku iz galerije uređaja
@@ -75,98 +75,90 @@ class _EditProductScreenState extends State<EditProductScreen> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Form(
-              key: from,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.90,
-                      child: TextFormField(
-                        controller: priceController,
-                        decoration: const InputDecoration(
-                          labelText: 'price',
-                          hintText: 'price.. \$',
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'please enter price';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.90,
-                      child: TextFormField(
-                        controller: nameController,
-                        decoration: const InputDecoration(
-                          labelText: 'product name',
-                          hintText: 'Enter product name ',
-                        ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'please enter name product';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.90,
-                      child: TextFormField(
-                        controller: descController,
-                        decoration: const InputDecoration(
-                          labelText: 'product description',
-                          hintText: 'Enter product description',
-                        ),
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      _selectImage();
-                    },
-                    icon: const Icon(
-                      Icons.add_a_photo,
-                      size: 35,
-                    ),
-                  ),
-                  // ako je selectedImage null vracamo zadanu sliku iz image.assets
-                  // u suprotnom ako nije vracamo sliku iz Image.file
-                  if (selectedImage == null)
+                key: from,
+                child: Column(
+                  children: [
                     Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Image.asset(
-                        selectedImage!,
-                        height: 260,
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.90,
+                        child: TextFormField(
+                          controller: priceController,
+                          decoration: const InputDecoration(
+                            labelText: 'price',
+                            hintText: 'price.. \$',
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'please enter price';
+                            }
+                            return null;
+                          },
+                        ),
                       ),
                     ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Image.file(
-                      File(selectedImage!),
-                      height: 260,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Image.asset(
-                            selectedImage!,
-                            height: 260,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.90,
+                        child: TextFormField(
+                          controller: nameController,
+                          decoration: const InputDecoration(
+                            labelText: 'product name',
+                            hintText: 'Enter product name ',
                           ),
-                        );
-                      },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'please enter name product';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.90,
+                        child: TextFormField(
+                          controller: descController,
+                          decoration: const InputDecoration(
+                            labelText: 'product description',
+                            hintText: 'Enter product description',
+                          ),
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        _selectImage();
+                      },
+                      icon: const Icon(
+                        Icons.add_a_photo,
+                        size: 35,
+                      ),
+                    ),
+                    // ako je imageSelectd istina koristimo image.assets za prikaz slike
+                    // ako je imageSelectd laz koristimo image.file za prikaz slike
+                    // errorBuilder koristimo da bih definisali ako se dogodi greska
+                    // mi koristimo da se prikaze slika iz image.assets
+                    SizedBox(
+                      height: 160,
+                      width: 160,
+                      child: imageSelected
+                          ? Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Image.asset(selectedImage!),
+                            )
+                          : Image.file(
+                              File(selectedImage!),
+                              errorBuilder: (context, error, stackTrace) {
+                                return Image.asset(selectedImage!);
+                              },
+                            ),
+                    ),
+                  ],
+                )),
           ),
         ),
         floatingActionButton: FloatingActionButton(
@@ -185,8 +177,20 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   price: priceController.text,
                   image: selectedImage ?? widget.product!.image,
                   isAssetImage: widget.product!.isAssetImage,
+                  category: Category.computers,
                 );
-                context.read<CartProvider>().updatedItem(updatedProduct);
+                context.read<CardProvider>().updatedItem(updatedProduct);
+                // metoda indexWhere se poziva  na widgetom.productList tj primjenuje se
+                // na svaki element u listi Ova metoda prima funkciju koja se izvršava za svaki element i provjerava određeni uslov
+                // u ovom  slučaju uslov(uvjet) je id prizvoda jednak id trenutnog uređivanog prizvoda widget.product!.id
+                // final index = dummyData
+                //     .indexWhere((product) => product.id == widget.product!.id);
+                // if (index != -1) {
+                //  setState(() {
+                //    dummyData[index] = updatedProduct;
+                //  });
+                // }
+                //// context.read<CartProvider>().updatedItem(updatedProduct);
                 // metoda indexWhere se poziva  na widgetom.productList tj primjenuje se
                 // na svaki element u listi Ova metoda prima funkciju koja se izvršava za svaki element i provjerava određeni uslov
                 // u ovom  slučaju uslov(uvjet) je id prizvoda jednak id trenutnog uređivanog prizvoda widget.product!.id
