@@ -1,11 +1,12 @@
 // ignore_for_file: depend_on_referenced_packages
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/model/product.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shop_air_app/providers/cart_provider.dart';
+import 'package:shop_air_app/providers/card_provider.dart';
 
 class AddProductScreen extends StatefulWidget {
   final Product? product;
@@ -24,6 +25,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   TextEditingController priceController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController descController = TextEditingController();
+  TextEditingController catgController = TextEditingController();
   String? selectedImage;
 
   bool imageSelected = false;
@@ -120,6 +122,19 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.90,
+                      child: TextFormField(
+                        controller: catgController,
+                        decoration: InputDecoration(
+                          labelText: 'product categories',
+                          helperText: 'Enter protuct categories',
+                        ),
+                      ),
+                    ),
+                  ),
                   IconButton(
                     onPressed: () {
                       _seletImage();
@@ -166,9 +181,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   description: descController.text,
                   price: priceController.text,
                   image: selectedImage!,
+                  category: Category.laptops,
                   isAssetImage: false,
                 );
-                context.read<CartProvider>().addItem(newProduct);
+                context.read<CardProvider>().addItem(newProduct);
               }
               FocusScope.of(context).unfocus();
               // ocistiti kontrolere nakon sto spremimo podatke
