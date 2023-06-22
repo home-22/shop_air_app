@@ -1,11 +1,10 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/data/dummy_data_list.dart';
 import 'package:shop_air_app/model/product.dart';
-import 'package:shop_air_app/providers/cart_provider.dart';
 
 import 'package:shop_air_app/screens/edit_product_screen/edit_product_screen.dart';
 
@@ -22,7 +21,6 @@ class ProductDetaliScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardProvider = Provider.of<CartProvider>(context);
     // metoda firstWhere uzima funkciju (anonimnu u ovom slucaju)
     //  koja prima element iz liste i provjerava njegaov id jel jednak traženom id
     // kada pronađe prvi element koji odgovara tom uvjetu vraća taj element
