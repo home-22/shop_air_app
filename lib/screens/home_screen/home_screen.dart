@@ -5,15 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/data/dummy_data_list.dart';
 import 'package:shop_air_app/model/product.dart';
-import 'package:shop_air_app/screens/add_product_screen/add_product_screen.dart';
-
-import 'dart:io';
-
 import 'package:shop_air_app/screens/home_screen/components/bottom_navigator_bar.dart';
-import 'package:shop_air_app/screens/home_screen/components/range_card.dart';
-
-import 'package:shop_air_app/screens/product_detail_screen/product_detail_screen.dart';
-import '../../providers/cart_provider.dart';
+import 'package:shop_air_app/screens/home_screen/components/category_text.dart';
+import 'package:shop_air_app/screens/home_screen/components/product_display_tab.dart';
+import '../../providers/card_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -25,11 +20,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Product> productList = dummyData;
+
   TextEditingController textSearch = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final cardProvider = Provider.of<CartProvider>(context);
+    final cardProvider = Provider.of<CardProvider>(context);
+    // List<Product> productList = cardProvider.getItems;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.kWhite,
@@ -101,80 +98,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Consumer<CartProvider>(
+      body: Consumer<CardProvider>(
         builder: (context, cardProvider, _) {
           return CustomScrollView(
             slivers: [
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final product = productList[index];
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => ProductDetaliScreen(
-                              id: product.id,
-                            ),
-                          ),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Card(
-                          child: Column(
-                            children: [
-                              Text(product.name),
-                              Row(
-                                children: [
-                                  // Ako selectedImage nije null  jeste asset slika,
-                                  // prikazujemo sliku koristeći Image.asset()
-                                  SizedBox(
-                                    height: 120,
-                                    width: 120,
-                                    child: product.isAssetImage
-                                        ? Image.asset(
-                                            product.image,
-                                            filterQuality: FilterQuality.high,
-                                          )
-                                        : Image.file(
-                                            File(product.image),
-                                            filterQuality: FilterQuality.high,
-                                            errorBuilder:
-                                                (context, error, stackTrace) {
-                                              return Image.asset(product.image);
-                                            },
-                                          ),
-                                  ),
-
-                                  const Spacer(),
-                                  ElevatedButton(
-                                    onPressed: () {},
-                                    child: Text(product.price),
-                                  ),
-                                  IconButton(
-                                    onPressed: () {
-                                      // brisemo prizvod sa liste koristci index prizvoda
-                                      // setState koristimo da aziriramo listu  nakon brisana
-                                      setState(() {
-                                        productList.removeAt(index);
-                                      });
-                                    },
-                                    icon: Icon(
-                                      Icons.delete,
-                                      color: AppColors.kRed,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                  childCount: productList.length,
-                ),
+              const CategoryText(title: 'Computers', buttonTitle: 'See more'),
+              ProductDisplayTab(
+                productList: dummyData
+                    .where((element) => element.category == Category.computers)
+                    .toList(),
+              ),
+              const CategoryText(title: 'Laptops', buttonTitle: 'See more'),
+              ProductDisplayTab(
+                productList: dummyData
+                    .where((element) => element.category == Category.laptops)
+                    .toList(),
+              ),
+              const CategoryText(title: 'Phones', buttonTitle: 'See more'),
+              ProductDisplayTab(
+                productList: dummyData
+                    .where((element) => element.category == Category.phones)
+                    .toList(),
+              ),
+              const CategoryText(title: 'Other', buttonTitle: 'See more'),
+              ProductDisplayTab(
+                productList: dummyData
+                    .where((element) => element.category == Category.other)
+                    .toList(),
               ),
             ],
           );
