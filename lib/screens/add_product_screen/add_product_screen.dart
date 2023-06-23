@@ -25,7 +25,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   TextEditingController priceController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController descController = TextEditingController();
-  TextEditingController catgController = TextEditingController();
+  Category? _selectedCategory;
   String? selectedImage;
 
   bool imageSelected = false;
@@ -123,16 +123,34 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.90,
-                      child: TextFormField(
-                        controller: catgController,
-                        decoration: InputDecoration(
-                          labelText: 'product categories',
-                          helperText: 'Enter protuct categories',
-                        ),
+                    padding: const EdgeInsets.all(5.0),
+                    child: DropdownButtonFormField<Category>(
+                      isDense: true,
+                      value: _selectedCategory,
+                      items: Category.values.map((Category category) {
+                        return DropdownMenuItem<Category>(
+                          value: category,
+                          child: Text(
+                            category.toString(),
+                          ),
+                        );
+                      }).toList(),
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.all(5.0),
+                        fillColor: AppColors.kGrey,
+                        filled: true,
+                        hintText: 'Select a category',
+                        border: InputBorder.none,
                       ),
+                      validator: (value) {
+                        if (value == null) {
+                          return 'Please select a category';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        _selectedCategory = value;
+                      },
                     ),
                   ),
                   IconButton(
@@ -181,7 +199,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   description: descController.text,
                   price: priceController.text,
                   image: selectedImage!,
-                  category: Category.laptops,
+                  category: _selectedCategory!,
                   isAssetImage: false,
                 );
                 context.read<CardProvider>().addItem(newProduct);
