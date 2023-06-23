@@ -1,8 +1,9 @@
-//enum ItemType {
-//  phones,
-//  computers,
-//  laptops,
-//}
+enum Category {
+  phones,
+  computers,
+  laptops,
+  other,
+}
 
 class Product {
   final String id;
@@ -11,7 +12,7 @@ class Product {
   final String price;
   final String image;
   final bool isAssetImage;
-  //ItemType? type;
+  final Category category;
 
   Product({
     required this.id,
@@ -20,8 +21,6 @@ class Product {
     required this.price,
     required this.image,
     required this.isAssetImage,
-//    this.type,
+    required this.category,
   });
 }
-
-List<Product> productList = [];
