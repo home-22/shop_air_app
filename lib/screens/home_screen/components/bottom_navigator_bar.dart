@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/screens/add_product_screen/add_product_screen.dart';
+import 'package:shop_air_app/screens/cart_%20screen/cart_screen.dart';
 
 class BottomNavigatorBar extends StatefulWidget {
   const BottomNavigatorBar({super.key});
@@ -48,7 +49,16 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
             icon: const Icon(Icons.add),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CartScreen(
+                    orderProducts: [],
+                  ),
+                ),
+              );
+            },
             icon: const Icon(Icons.category_outlined),
           ),
         ],
