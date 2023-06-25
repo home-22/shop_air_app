@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/data/dummy_data_list.dart';
 import 'package:shop_air_app/model/product.dart';
+
 import 'package:shop_air_app/screens/home_screen/components/bottom_navigator_bar.dart';
 import 'package:shop_air_app/screens/home_screen/components/category_text.dart';
 import 'package:shop_air_app/screens/home_screen/components/product_display_tab.dart';
