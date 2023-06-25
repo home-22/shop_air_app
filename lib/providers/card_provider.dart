@@ -30,7 +30,7 @@ class CardProvider with ChangeNotifier {
   }
 
   void removeItem(int index) {
-    dummyData.removeAt(index);
+    removeItem(index);
     notifyListeners();
   }
 }
