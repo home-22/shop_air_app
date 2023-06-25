@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/data/dummy_data_list.dart';
 import 'package:shop_air_app/model/product.dart';
+import 'package:shop_air_app/providers/card_provider.dart';
 import 'package:shop_air_app/screens/product_detail_screen/product_detail_screen.dart';
 
 // Kartica za prikaz prizvoda iz liste
@@ -103,9 +105,14 @@ class ProductDisplayTab extends StatelessWidget {
                     left: 20,
                     child: CircleAvatar(
                       backgroundColor: AppColors.kRed,
-                      child: Icon(
-                        Icons.delete,
-                        color: AppColors.kWhite,
+                      child: IconButton(
+                        onPressed: () {
+                          context.read<CardProvider>().removeItem(index);
+                        },
+                        icon: Icon(
+                          Icons.delete,
+                          color: AppColors.kWhite,
+                        ),
                       ),
                     ),
                   ),
