@@ -27,7 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final cardProvider = Provider.of<CardProvider>(context);
-    // List<Product> productList = cardProvider.getItems;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.kWhite,
