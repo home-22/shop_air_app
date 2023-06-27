@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_air_app/providers/card_provider.dart';
+import 'package:shop_air_app/providers/product_search_provider.dart';
 import 'package:shop_air_app/screens/welcome_screen/welcome_screen.dart';
 
 void main()
@@ -8,9 +9,14 @@ void main()
 {
   //WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
-  runApp(MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => CardProvider())],
-      child: const MyApp()));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (_) => CardProvider(),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => ProductSearchProvider(),
+    ),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
