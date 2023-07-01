@@ -7,7 +7,9 @@ import 'package:shop_air_app/data/dummy_data_list.dart';
 import 'package:shop_air_app/model/product.dart';
 
 import 'package:shop_air_app/screens/home_screen/components/bottom_navigator_bar.dart';
+import 'package:shop_air_app/screens/home_screen/components/product_display_tab.dart';
 import 'package:shop_air_app/screens/home_screen/components/search_box.dart';
+import 'package:shop_air_app/screens/home_screen/components/super_flash_container.dart';
 import '../../providers/card_provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,25 +28,62 @@ class _HomeScreenState extends State<HomeScreen> {
     final cardProvider = Provider.of<CardProvider>(context);
     return Material(
       child: SafeArea(
-        child: Scaffold(
-          body: Consumer<CardProvider>(
-            builder: (context, cardProvider, _) {
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const SearchBox(),
-                    Container(
-                      padding: const EdgeInsets.all(10.0),
-                      height: MediaQuery.of(context).size.height * 0.25,
-                      width: MediaQuery.of(context).size.width,
-                      color: AppColors.kBlue,
-                    )
-                  ],
-                ),
-              );
-            },
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Scaffold(
+            body: Consumer<CardProvider>(
+              builder: (context, cardProvider, _) {
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SearchBox(),
+                      Divider(
+                        color: AppColors.kGrey,
+                      ),
+                      const SuperFlashContener(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Category',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'More Category',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.kBlue),
+                          ),
+                        ],
+                      ),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            for (int i = 0; i <= 4; i++)
+                              CircleAvatar(
+                                radius: 30,
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.computer,
+                                    color: AppColors.kBlue,
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                      ProductDisplayTab(productList: productList),
+                    ],
+                  ),
+                );
+              },
+            ),
+            bottomNavigationBar: const BottomNavigatorBar(),
           ),
-          bottomNavigationBar: const BottomNavigatorBar(),
         ),
       ),
     );
