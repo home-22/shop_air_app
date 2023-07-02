@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 
+DateTime now = DateTime.now();
+int hours = now.hour;
+int minutes = now.minute;
+int seconds = now.second;
+
 class SuperFlashContener extends StatefulWidget {
   const SuperFlashContener({super.key});
 
@@ -10,13 +15,14 @@ class SuperFlashContener extends StatefulWidget {
 
 class _SuperFlashContenerState extends State<SuperFlashContener> {
   final List<String> images = [
-    'electronics0.jpg',
-    'electronics1.jpg',
-    'electronics2.jpg',
-    'electronics3.jpg',
-    'electronics4.jpg'
+    'electronicss0.jpg',
+    'electronicss1.jpg',
+    'electronicss2.jpg',
+    'electronicss3.jpg',
+    'electronicss4.jpg',
   ];
   final PageController _pageController = PageController();
+
   int _currentPage = 0;
 
   @override
@@ -46,20 +52,79 @@ class _SuperFlashContenerState extends State<SuperFlashContener> {
                   },
                   itemBuilder: (BuildContext context, int index) {
                     return Image.asset(
-                      'assets/images/electronics$index.jpg',
-                      fit: BoxFit.cover,
+                      'assets/images/electronicss$index.jpg',
+                      fit: BoxFit.contain,
                     );
                   },
                 ),
                 Positioned(
-                    bottom: 30,
+                    bottom: 50,
+                    left: 30,
                     child: Text(
-                      'Super Flash Sale\n50% Off\n\n 08:34:53',
+                      'Super Flash Sale\n50% Off\n',
                       style: TextStyle(
-                          color: AppColors.kRed,
+                          color: AppColors.kWhite,
                           fontWeight: FontWeight.bold,
-                          fontSize: 20),
-                    ))
+                          fontSize: 22),
+                    )),
+                Positioned(
+                  bottom: 20,
+                  left: 20,
+                  child: Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.all(8.0),
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          color: AppColors.kWhite,
+                          borderRadius: BorderRadius.circular(4.0),
+                        ),
+                        child: Center(
+                          child: Text('$hours'),
+                        ),
+                      ),
+                      Text(
+                        ':',
+                        style: TextStyle(
+                            color: AppColors.kWhite,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(8.0),
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.0),
+                          color: AppColors.kWhite,
+                        ),
+                        child: Center(
+                          child: Text('$minutes'),
+                        ),
+                      ),
+                      Text(
+                        ':',
+                        style: TextStyle(
+                            color: AppColors.kWhite,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(8.0),
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.0),
+                          color: AppColors.kWhite,
+                        ),
+                        child: Center(
+                          child: Text('$seconds'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
