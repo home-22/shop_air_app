@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -71,10 +72,33 @@ class ProductDisplayTab extends StatelessWidget {
                     child: Text(
                       product.name,
                       style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.kBluee),
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.kBluee,
+                      ),
                     ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      RatingBar.builder(
+                          initialRating: 0,
+                          maxRating: 1,
+                          itemCount: 5,
+                          itemSize: 18,
+                          allowHalfRating: true,
+                          itemBuilder: (context, _) {
+                            return Icon(
+                              Icons.star,
+                              color: AppColors.kAmber,
+                            );
+                          },
+                          onRatingUpdate: (rating) {
+                            if (kDebugMode) {
+                              print(rating);
+                            }
+                          }),
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -87,30 +111,29 @@ class ProductDisplayTab extends StatelessWidget {
                     ),
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        child: RatingBar.builder(
-                            initialRating: 0,
-                            maxRating: 1,
-                            itemCount: 5,
-                            itemSize: 14,
-                            itemPadding: const EdgeInsets.symmetric(
-                              horizontal: 7.0,
-                              vertical: 6.0,
-                            ),
-                            allowHalfRating: true,
-                            itemBuilder: (context, _) {
-                              return Icon(
-                                Icons.star,
-                                color: AppColors.kAmber,
-                              );
-                            },
-                            onRatingUpdate: (rating) {
-                              print(rating);
-                            }),
+                      Text(
+                        product.price,
+                        style: TextStyle(
+                            decoration: TextDecoration.lineThrough,
+                            //boja prekrizene linije
+                            decorationColor: AppColors.kGrey,
+                            // debljina linije
+                            decorationThickness: 2.0),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '24 % off',
+                        style: TextStyle(
+                          color: AppColors.kRed,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
