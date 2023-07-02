@@ -41,39 +41,51 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: AppColors.kGrey,
                       ),
                       const SuperFlashContener(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Category',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'More Category',
-                            style: TextStyle(
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Category',
+                              style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.kBlue),
-                          ),
-                        ],
+                              ),
+                            ),
+                            Text(
+                              'More Category',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.kBlue,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            for (int i = 0; i <= 4; i++)
-                              CircleAvatar(
-                                radius: 30,
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.computer,
-                                    color: AppColors.kBlue,
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Row(
+                            children: [
+                              for (int i = 0; i <= 4; i++)
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: CircleAvatar(
+                                    radius: 30,
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.computer,
+                                        color: AppColors.kBlue,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       ProductDisplayTab(productList: productList),
