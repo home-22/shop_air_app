@@ -24,7 +24,7 @@ class _SearchBoxState extends State<SearchBox> {
       child: Row(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(2.0),
             child: SizedBox(
               height: 45,
               width: MediaQuery.of(context).size.width * 0.65,
@@ -77,8 +77,11 @@ class _SearchBoxState extends State<SearchBox> {
                 },
                 decoration: InputDecoration(
                   fillColor: AppColors.kWhite,
-                  labelText: 'Search',
-                  suffixIcon: const Icon(Icons.search),
+                  labelText: 'Search Product',
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: AppColors.kBlue,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
