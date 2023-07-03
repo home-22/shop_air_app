@@ -21,7 +21,7 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
       scrollDirection: Axis.horizontal,
       child: Container(
         padding: const EdgeInsets.all(3.0),
-        height: 60,
+        height: 40,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: AppColors.kWhite,
