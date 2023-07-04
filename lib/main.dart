@@ -9,14 +9,19 @@ void main()
 {
   //WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-      create: (_) => CardProvider(),
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => CardProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ProductSearchProvider(),
+        ),
+      ],
+      child: const MyApp(),
     ),
-    ChangeNotifierProvider(
-      create: (_) => ProductSearchProvider(),
-    ),
-  ], child: const MyApp()));
+  );
 }
 
 class MyApp extends StatelessWidget {
