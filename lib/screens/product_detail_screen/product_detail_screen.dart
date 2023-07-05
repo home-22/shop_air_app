@@ -134,6 +134,20 @@ class ProductDetaliScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              Row(
+                children: [
+                  for (int i = 0; i < 5; i++)
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: AppColors.kAmber),
+                      ),
+                    ),
+                ],
+              )
             ],
           ),
         ),
