@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static Color kBlue = const Color(0xFF51B3EC);
+  // primarne boje
+  static Color kBlue = Color(0xFF40BFFF);
+  static Color kAmber = Color(0xFFFFC833);
+  static Color kRed = Color(0xFFFB7181);
+  static Color kPurple = Color(0xFF5C61F4);
+  static Color kGreen = Color(0xFF53D1B6);
+  // ostale boje
+  static Color kDark = Color(0xFF40BFFF);
+  static Color kLight = Color(0xFF0BFFF);
   static Color kGrey = const Color(0xFFC4BDCA);
-  static Color kRed = const Color(0xFFEC0511);
-  static Color kBluee = const Color(0xFF6178FA);
-  static Color kBlack = const Color(0xFF0E0D05);
+  // bla colors
   static Color kWhite = const Color(0xFFFFFFFF);
-  static Color kAmber = const Color(0xFFF1EE0B);
 }
