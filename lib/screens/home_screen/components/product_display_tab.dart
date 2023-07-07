@@ -42,14 +42,22 @@ class ProductDisplayTab extends StatelessWidget {
               );
             },
             child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 6.0),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2.0),
+                borderRadius: BorderRadius.circular(8.0),
+                color: AppColors.kGrey,
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10.0,
+                      top: 5.0,
+                    ),
                     child: SizedBox(
-                      width: double.infinity,
+                      height: 90,
+                      width: 130,
                       child: product.isAssetImage
                           ? Image.asset(
                               product.image,
@@ -68,7 +76,7 @@ class ProductDisplayTab extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(2.0),
+                    padding: const EdgeInsets.only(left: 10.0, top: 10.0),
                     child: Text(
                       product.name,
                       style: TextStyle(
@@ -79,55 +87,65 @@ class ProductDisplayTab extends StatelessWidget {
                     ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      RatingBar.builder(
-                          initialRating: 0,
-                          maxRating: 1,
-                          itemCount: 5,
-                          itemSize: 18,
-                          allowHalfRating: true,
-                          itemBuilder: (context, _) {
-                            return Icon(
-                              Icons.star,
-                              color: AppColors.kAmber,
-                            );
-                          },
-                          onRatingUpdate: (rating) {
-                            if (kDebugMode) {
-                              print(rating);
-                            }
-                          }),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 9.0),
+                        child: RatingBar.builder(
+                            initialRating: 0,
+                            maxRating: 1,
+                            itemCount: 5,
+                            itemSize: 18,
+                            allowHalfRating: true,
+                            itemBuilder: (context, _) {
+                              return Icon(
+                                Icons.star,
+                                color: AppColors.kAmber,
+                              );
+                            },
+                            onRatingUpdate: (rating) {
+                              if (kDebugMode) {
+                                print(rating);
+                              }
+                            }),
+                      ),
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    padding: const EdgeInsets.only(left: 10.0),
                     child: Text(
                       product.price,
                       style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.kBlue),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.kBlue,
+                      ),
                     ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        product.price,
-                        style: TextStyle(
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Text(
+                          product.price,
+                          style: TextStyle(
+                            fontSize: 16,
                             decoration: TextDecoration.lineThrough,
                             //boja prekrizene linije
                             decorationColor: AppColors.kGrey,
                             // debljina linije
-                            decorationThickness: 2.0),
+                            decorationThickness: 2.0,
+                          ),
+                        ),
                       ),
                       const SizedBox(
-                        width: 10,
+                        width: 10.0,
                       ),
                       Text(
                         '24 % off',
                         style: TextStyle(
+                          fontSize: 16,
                           color: AppColors.kRed,
                           fontWeight: FontWeight.bold,
                         ),
