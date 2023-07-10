@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
-  String name;
-  Image image;
-  CategoryCard({
+  final String name;
+  final Image image;
+  const CategoryCard({
     super.key,
     required this.name,
     required this.image,
