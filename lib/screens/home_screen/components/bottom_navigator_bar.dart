@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
-import 'package:shop_air_app/data/dummy_data_list.dart';
 import 'package:shop_air_app/providers/product_search_provider.dart';
-import 'package:shop_air_app/screens/add_product_screen/add_product_screen.dart';
 import 'package:shop_air_app/screens/cart_%20screen/cart_screen.dart';
+import 'package:shop_air_app/screens/home_screen/components/search_box.dart';
+import 'package:shop_air_app/screens/home_screen/home_screen.dart';
 
 class BottomNavigatorBar extends StatefulWidget {
   const BottomNavigatorBar({super.key});
@@ -35,7 +35,12 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
                   width: 50,
                   child: IconButton(
                     onPressed: () {
-                      productSearchProvider.searchProducts(dummyData);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                      );
                     },
                     icon: Icon(
                       Icons.home_filled,
@@ -52,7 +57,7 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const AddProductScreen(),
+                      builder: (context) => const SearchBox(),
                     ),
                   );
                 },
