@@ -8,15 +8,18 @@ import 'package:shop_air_app/model/product.dart';
 
 import 'package:shop_air_app/screens/home_screen/components/bottom_navigator_bar.dart';
 import 'package:shop_air_app/screens/home_screen/components/category_card.dart';
+
 import 'package:shop_air_app/screens/home_screen/components/product_display_tab.dart';
 import 'package:shop_air_app/screens/home_screen/components/search_box.dart';
 import 'package:shop_air_app/screens/home_screen/components/super_flash_container.dart';
+
 import '../../providers/card_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key,
   });
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -32,87 +35,124 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Scaffold(
-            body: Consumer<CardProvider>(
-              builder: (context, cardProvider, _) {
-                return SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SearchBox(),
-                      Divider(
-                        color: AppColors.kGrey,
-                      ),
-                      const SuperFlashContener(),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Category',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              'More Category',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.kBlue,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Padding(
-                          padding: const EdgeInsets.all(2.0),
-                          child: Row(
-                            children: [
-                              //  for (int i = 0; i <= 4; i++)
-                              CategoryCard(
-                                name: 'phones',
-                                image: const Image(
-                                  image: AssetImage(
-                                    'assets/images/electronics0.jpg',
-                                  ),
-                                ),
-                              ),
-                              CategoryCard(
-                                name: 'laptops',
-                                image: const Image(
-                                  image: AssetImage(
-                                    'assets/images/electronics2.jpg',
-                                  ),
-                                ),
-                              ),
-                              CategoryCard(
-                                name: 'computers',
-                                image: const Image(
-                                  image: AssetImage(
-                                    'assets/images/electronics1.jpg',
-                                  ),
-                                ),
-                              ),
-                              CategoryCard(
-                                name: 'other',
-                                image: const Image(
-                                  image: AssetImage(
-                                    'assets/images/electronics9.jpg',
-                                  ),
-                                ),
-                              ),
-                            ],
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SearchBox(),
+                  Divider(
+                    color: AppColors.kGrey,
+                  ),
+                  const SuperFlashContener(),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Category',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ),
-                      ProductDisplayTab(productList: productList),
-                    ],
+                        Text(
+                          'More Category',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.kBlue,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                );
-              },
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                productList = dummyData
+                                    .where((element) =>
+                                        element.category == Category.phones)
+                                    .toList();
+                              });
+                            },
+                            child: const CategoryCard(
+                              name: 'phones',
+                              image: Image(
+                                image: AssetImage(
+                                  'assets/images/electronics0.jpg',
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                productList = dummyData
+                                    .where((element) =>
+                                        element.category == Category.laptops)
+                                    .toList();
+                              });
+                            },
+                            child: const CategoryCard(
+                              name: 'laptops',
+                              image: Image(
+                                image: AssetImage(
+                                  'assets/images/electronics2.jpg',
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                productList = dummyData
+                                    .where((element) =>
+                                        element.category == Category.computers)
+                                    .toList();
+                              });
+                            },
+                            child: const CategoryCard(
+                              name: 'computers',
+                              image: Image(
+                                image: AssetImage(
+                                  'assets/images/electronics1.jpg',
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                productList = dummyData
+                                    .where((element) =>
+                                        element.category == Category.other)
+                                    .toList();
+                              });
+                            },
+                            child: const CategoryCard(
+                              name: 'other',
+                              image: Image(
+                                image: AssetImage(
+                                  'assets/images/electronics9.jpg',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  ProductDisplayTab(
+                    productList: productList,
+                  ),
+                ],
+              ),
             ),
             bottomNavigationBar: const BottomNavigatorBar(),
           ),
