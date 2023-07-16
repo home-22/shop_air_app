@@ -1,20 +1,24 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/data/dummy_data_list.dart';
-import 'package:shop_air_app/model/product.dart';
 
 import 'package:shop_air_app/screens/product_detail_screen/product_detail_screen.dart';
+
+import '../../../model/product.dart';
 
 // Kartica za prikaz prizvoda iz liste
 // ignore: must_be_immutable
 class ProductDisplayTab extends StatelessWidget {
   List<Product> productList = dummyData;
-  ProductDisplayTab({super.key, required this.productList});
+
+  ProductDisplayTab({
+    super.key,
+    required this.productList,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -92,22 +96,19 @@ class ProductDisplayTab extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 9.0),
                         child: RatingBar.builder(
-                            initialRating: 0,
-                            maxRating: 1,
-                            itemCount: 5,
-                            itemSize: 18,
-                            allowHalfRating: true,
-                            itemBuilder: (context, _) {
-                              return Icon(
-                                Icons.star,
-                                color: AppColors.kAmber,
-                              );
-                            },
-                            onRatingUpdate: (rating) {
-                              if (kDebugMode) {
-                                print(rating);
-                              }
-                            }),
+                          initialRating: 0,
+                          maxRating: 1,
+                          itemCount: 5,
+                          itemSize: 18,
+                          allowHalfRating: true,
+                          itemBuilder: (context, _) {
+                            return Icon(
+                              Icons.star,
+                              color: AppColors.kAmber,
+                            );
+                          },
+                          onRatingUpdate: (rating) {},
+                        ),
                       ),
                     ],
                   ),
