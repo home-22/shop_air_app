@@ -23,14 +23,12 @@ class ProductDisplayTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 2,
+      height: 700,
       width: double.infinity,
       child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200,
-          childAspectRatio: 3 / 4,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 1,
         ),
         itemCount: productList.length,
         itemBuilder: (context, index) {
@@ -46,43 +44,64 @@ class ProductDisplayTab extends StatelessWidget {
               );
             },
             child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 6.0),
+              margin: EdgeInsets.all(4.0),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                color: AppColors.kGrey,
+                color: AppColors.kWhite,
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 1,
+                    color: AppColors.kDark,
+                    offset: Offset(0, 1),
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(6.0),
               ),
+              width: MediaQuery.of(context).size.width * 0.45,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 10.0,
-                      top: 5.0,
-                    ),
-                    child: SizedBox(
-                      height: 90,
-                      width: 130,
-                      child: product.isAssetImage
-                          ? Image.asset(
-                              product.image,
-                              fit: BoxFit.cover,
-                            )
-                          : Image.file(
-                              File(product.image),
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Image.asset(
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(2.0),
+                            bottomRight: Radius.circular(2.0),
+                            topLeft: Radius.circular(6.0),
+                            topRight: Radius.circular(6.0),
+                          ),
+                          child: product.isAssetImage
+                              ? Image.asset(
                                   product.image,
+                                  width: 100,
+                                  height: 100,
                                   fit: BoxFit.cover,
-                                );
-                              },
-                            ),
-                    ),
+                                )
+                              : Image.file(
+                                  File(product.image),
+                                  height: 100,
+                                  width: 100,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Image.asset(
+                                      product.image,
+                                      width: 100,
+                                      height: 100,
+                                      fit: BoxFit.cover,
+                                    );
+                                  },
+                                ),
+                        ),
+                      ),
+                    ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 10.0),
+                    padding: const EdgeInsets.symmetric(),
                     child: Text(
                       product.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -90,68 +109,16 @@ class ProductDisplayTab extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 9.0),
-                        child: RatingBar.builder(
-                          initialRating: 0,
-                          maxRating: 1,
-                          itemCount: 5,
-                          itemSize: 18,
-                          allowHalfRating: true,
-                          itemBuilder: (context, _) {
-                            return Icon(
-                              Icons.star,
-                              color: AppColors.kAmber,
-                            );
-                          },
-                          onRatingUpdate: (rating) {},
-                        ),
-                      ),
-                    ],
-                  ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
+                    padding: const EdgeInsets.symmetric(),
                     child: Text(
-                      product.price,
+                      '\$${product.price}',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: AppColors.kBlue,
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: Text(
-                          product.price,
-                          style: TextStyle(
-                            fontSize: 16,
-                            decoration: TextDecoration.lineThrough,
-                            //boja prekrizene linije
-                            decorationColor: AppColors.kGrey,
-                            // debljina linije
-                            decorationThickness: 2.0,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10.0,
-                      ),
-                      Text(
-                        '24 % off',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: AppColors.kRed,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               ),
