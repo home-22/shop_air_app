@@ -1,18 +1,12 @@
-// ignore_for_file: unused_local_variable, avoid_print
-
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/data/dummy_data_list.dart';
 import 'package:shop_air_app/model/product.dart';
-
 import 'package:shop_air_app/screens/home_screen/components/bottom_navigator_bar.dart';
 import 'package:shop_air_app/screens/home_screen/components/category_card.dart';
-
 import 'package:shop_air_app/screens/home_screen/components/product_display_tab.dart';
-import 'package:shop_air_app/screens/home_screen/components/super_flash_container.dart';
-
-import '../../providers/card_provider.dart';
+//import '../../providers/card_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -28,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final cardProvider = Provider.of<CardProvider>(context);
+    //  final cardProvider = Provider.of<CardProvider>(context);
     return Material(
       child: SafeArea(
         child: Padding(
@@ -37,11 +31,31 @@ class _HomeScreenState extends State<HomeScreen> {
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  //   const SearchBox(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 100.0),
+                        child: Text(
+                          'Make home',
+                          style: TextStyle(
+                              color: AppColors.kBlue,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.shopping_cart,
+                          color: AppColors.kBlue,
+                        ),
+                      ),
+                    ],
+                  ),
                   Divider(
                     color: AppColors.kGrey,
                   ),
-                  const SuperFlashContener(),
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Row(
