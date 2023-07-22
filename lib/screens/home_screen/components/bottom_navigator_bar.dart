@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/providers/product_search_provider.dart';
-import 'package:shop_air_app/screens/cart_%20screen/cart_screen.dart';
+import 'package:shop_air_app/screens/add_product_screen/add_product_screen.dart';
+//import 'package:shop_air_app/screens/cart_%20screen/cart_screen.dart';
 import 'package:shop_air_app/screens/home_screen/components/search_box.dart';
 import 'package:shop_air_app/screens/home_screen/home_screen.dart';
 
@@ -72,7 +73,7 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
               child: IconButton(
                 onPressed: () {},
                 icon: Icon(
-                  Icons.shopping_cart,
+                  Icons.notifications,
                   color: AppColors.kBlue,
                 ),
               ),
@@ -84,14 +85,12 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const CartScreen(
-                        orderProducts: [],
-                      ),
+                      builder: (context) => const AddProductScreen(),
                     ),
                   );
                 },
                 icon: Icon(
-                  Icons.local_offer_outlined,
+                  Icons.add,
                   color: AppColors.kBlue,
                 ),
               ),
