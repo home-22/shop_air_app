@@ -4,7 +4,6 @@ import 'package:shop_air_app/colors/app_colors.dart';
 import 'package:shop_air_app/providers/product_search_provider.dart';
 import 'package:shop_air_app/screens/add_product_screen/add_product_screen.dart';
 //import 'package:shop_air_app/screens/cart_%20screen/cart_screen.dart';
-import 'package:shop_air_app/screens/home_screen/components/search_box.dart';
 import 'package:shop_air_app/screens/home_screen/home_screen.dart';
 
 class BottomNavigatorBar extends StatefulWidget {
@@ -50,23 +49,6 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
                   ),
                 );
               },
-            ),
-            SizedBox(
-              width: 50,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SearchBox(),
-                    ),
-                  );
-                },
-                icon: Icon(
-                  Icons.search,
-                  color: AppColors.kBlue,
-                ),
-              ),
             ),
             SizedBox(
               width: 50,
