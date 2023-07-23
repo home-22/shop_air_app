@@ -6,6 +6,7 @@ import 'package:shop_air_app/model/product.dart';
 import 'package:shop_air_app/screens/home_screen/components/bottom_navigator_bar.dart';
 import 'package:shop_air_app/screens/home_screen/components/category_card.dart';
 import 'package:shop_air_app/screens/home_screen/components/product_display_tab.dart';
+import 'package:shop_air_app/screens/home_screen/components/search_box.dart';
 //import '../../providers/card_provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,15 +35,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 100.0),
-                        child: Text(
-                          'Make home',
-                          style: TextStyle(
-                              color: AppColors.kBlue,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SearchBox(),
+                            ),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.search,
+                          color: AppColors.kBlue,
                         ),
+                      ),
+                      Text(
+                        'Make home',
+                        style: TextStyle(
+                            color: AppColors.kBlue,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
                       ),
                       IconButton(
                         onPressed: () {},
